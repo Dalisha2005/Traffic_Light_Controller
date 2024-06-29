@@ -29,4 +29,15 @@ A traffic light system regulates intersection traffic flow using standard red, y
 
 Common traffic issues, such as congestion due to unregulated traffic levels and unnecessary waiting times, are mitigated through precise traffic level detection and configurable delay times.
 
+## Explanation
+### Considered directions
+![](configurations.png)
+
+The directions M1, MT, M2, and S considered for our problem analysis are illustrated in the figure.
+### States
+Furthermore, the problem statement is also explained in the figure. We have taken six states (S1, S2, S3, S4, S5, S6) into consideration, and the state diagram and state table are created based on the logic explained in the figure.
+
+
+
+
 
