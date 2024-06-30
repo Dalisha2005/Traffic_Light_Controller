@@ -273,7 +273,7 @@ Similar logic follows for every state.
 
 ## Schematic view
 
-[![](.png)](schematic.pdf)
+[![](schematic-1.png)](schematic.pdf)
 
 
 ## Testbench
