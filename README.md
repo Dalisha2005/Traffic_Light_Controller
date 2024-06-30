@@ -56,8 +56,17 @@ This sequence continues in a cycle.
 
 ### State Diagram
 
+The signal will stay in state S1 for TMG seconds before transitioning to state S2. It will then remain in state S2 for TY seconds before moving to state S3. This pattern continues, with the signal staying in each state for the specified duration. After TY seconds in state S6, the signal returns to state S1, and the cycle repeats.
 
 
+![](State Diagram.png)
+
+In the figure, the time delays are as follows:
+
+- TMG: 7 seconds
+- TY: 2 seconds
+- TTG: 5 seconds
+- TSG: 3 seconds
 
 
 
