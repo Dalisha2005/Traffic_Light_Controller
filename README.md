@@ -330,3 +330,12 @@ Similar logic follows for every state.
 ## Waveform
 
 ![](waveform.png)
+
+## Result
+In this model, we observed various stages that describe each signal's behavior. For example, consider the first stage where the north-south signals give an indication. When the north-south signal is red, the east-west signal turns green, allowing traffic to move in the respective direction. After a delay, the east-west signal turns yellow, followed by red. Simultaneously, the north-south signal transitions from red to green, allowing traffic to flow. This process repeats in a continuous loop.
+
+Modern multi-way traffic management significantly improves traffic conditions by sensing traffic intensity and adjusting time allocations accordingly. In this model, Verilog HDL is used for circuit description, and the code is simulated using Xilinx 14.5.
+
+This traffic light control system operates on a fixed time allocation concept for each side of the junction, which does not change with varying traffic density. Timings at each junction are fixed. Sometimes, higher traffic density on one side of the junction requires a longer green signal duration than the standard allotted time.
+
+Thus, the traffic light control system facilitates an orderly flow of vehicles, reducing obstacles and high-level accidents that occur daily. However, many areas or small towns still lack traffic light control facilities, leading to frequent accidents. Therefore, it is essential to implement such facilities to control and maintain traffic effectively.
