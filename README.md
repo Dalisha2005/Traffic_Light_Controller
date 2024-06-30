@@ -37,6 +37,29 @@ The directions M1, MT, M2, and S considered for our problem analysis are illustr
 ### States
 Furthermore, the problem statement is also explained in the figure. We have taken six states (S1, S2, S3, S4, S5, S6) into consideration, and the state diagram and state table are created based on the logic explained in the figure.
 
+![](states.png)
+
+- A green light indicates a clear route with no traffic, allowing an easy flow of vehicles.
+- A red light signals a traffic jam, blocking the route for vehicle movement.
+- While a yellow light signifies medium traffic flow in the route.
+
+The time delays for transitioning from one state to another are defined as follows:
+
+- TMG: from S1 to S2
+- TY: from S2 to S3
+- TTG: from S3 to S4
+- TY: from S4 to S5
+- TSG: from S5 to S6
+- TY: from S6 to S1
+
+This sequence continues in a cycle.
+
+### State Diagram
+
+
+
+
+
 
 
 
