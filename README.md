@@ -59,7 +59,7 @@ This sequence continues in a cycle.
 The signal will stay in state S1 for TMG seconds before transitioning to state S2. It will then remain in state S2 for TY seconds before moving to state S3. This pattern continues, with the signal staying in each state for the specified duration. After TY seconds in state S6, the signal returns to state S1, and the cycle repeats.
 
 
-![](State diagram.png)
+![](state_diagram.png)
 
 In the figure, the time delays are as follows:
 
@@ -68,8 +68,209 @@ In the figure, the time delays are as follows:
 - TTG: 5 seconds
 - TSG: 3 seconds
 
+### State Table
+In the figure:
 
+- R represents RED
+- Y represents YELLOW
+- G represents GREEN
 
+States A, B, and C are considered as the current states. The state table is created based on the logic diagram/problem statement shown in the figure.
 
+We can understand the way we wrote the states by taking a look at the example below:-
+In state S1(001), M1 = GREEN, implies, RYG value = 001.
+
+Similar logic follows for every state.
+
+![](State_table.png)
+
+## RTL Code
+```
+
+      `timescale 1ms / 1ps
+      //////////////////////////////////////////////////////////////////////////////////
+      // Company: 
+      // Engineer: 
+      // 
+      // Create Date: 29.06.2024 17:33:39
+      // Design Name: 
+      // Module Name: Traffic_Light_Controller
+      // Project Name: 
+      // Target Devices: 
+      // Tool Versions: 
+      // Description: 
+      // 
+      // Dependencies: 
+      // 
+      // Revision:
+      // Revision 0.01 - File Created
+      // Additional Comments:
+      // 
+      //////////////////////////////////////////////////////////////////////////////////
+      
+      
+      module Traffic_Light_Controller(
+      
+      
+          input clk,rst,
+          output reg [2:0]light_M1,
+          output reg [2:0]light_S,
+          output reg [2:0]light_MT,
+          output reg [2:0]light_M2
+          );
+          
+          parameter  S1=0, S2=1, S3 =2, S4=3, S5=4,S6=5;
+          reg [3:0]count;
+          reg[2:0] ps;
+          parameter  sec7=7,sec5=5,sec2=2,sec3=3;
+      
+         
+          
+          always@(posedge clk or posedge rst)
+              begin
+              if(rst==1)
+              begin
+              ps<=S1;
+              count<=0;
+              end
+              else
+              
+            
+             
+                  
+                  case(ps)
+                      S1: if(count<sec7)
+                              begin
+                              ps<=S1;
+                              count<=count+1;
+                              end
+                          else
+                              begin
+                              ps<=S2;
+                              count<=0;
+                              end
+                      S2: if(count<sec2)
+                              begin
+                              ps<=S2;
+                              count<=count+1;
+                              end
+      
+                          else
+                              begin
+                              ps<=S3;
+                              count<=0;
+                              end
+                      S3: if(count<sec5)
+                              begin
+                              ps<=S3;
+                              count<=count+1;
+                              end
+      
+                          else
+                              begin
+                              ps<=S4;
+                              count<=0;
+                              end
+                      S4:if(count<sec2)
+                              begin
+                              ps<=S4;
+                              count<=count+1;
+                              end
+      
+                          else
+                              begin
+                              ps<=S5;
+                              count<=0;
+                              end
+                      S5:if(count<sec3)
+                              begin
+                              ps<=S5;
+                              count<=count+1;
+                              end
+      
+                          else
+                              begin
+                              ps<=S6;
+                              count<=0;
+                              end
+      
+                      S6:if(count<sec2)
+                              begin
+                              ps<=S6;
+                              count<=count+1;
+                              end
+      
+                          else
+                              begin
+                              ps<=S1;
+                              count<=0;
+                              end
+                      default: ps<=S1;
+                      endcase
+                  end   
+      
+                  always@(ps)    
+                  begin
+                      
+                      case(ps)
+                           
+                          S1:
+                          begin
+                             light_M1<=3'b001;
+                             light_M2<=3'b001;
+                             light_MT<=3'b100;
+                             light_S<=3'b100;
+                          end
+                          S2:
+                          begin 
+                             light_M1<=3'b001;
+                             light_M2<=3'b010;
+                             light_MT<=3'b100;
+                             light_S<=3'b100;
+                          end
+                          S3:
+                          begin
+                             light_M1<=3'b001;
+                             light_M2<=3'b100;
+                             light_MT<=3'b001;
+                             light_S<=3'b100;
+                          end
+                          S4:
+                          begin
+                             light_M1<=3'b010;
+                             light_M2<=3'b100;
+                             light_MT<=3'b010;
+                             light_S<=3'b100;
+                          end
+                          S5:
+                          begin
+                             light_M1<=3'b100;
+                             light_M2<=3'b100;
+                             light_MT<=3'b100;
+                             light_S<=3'b001;
+                          end
+                          S6:
+                          begin 
+                             light_M1<=3'b100;
+                             light_M2<=3'b100;
+                             light_MT<=3'b100;
+                             light_S<=3'b010;
+                          end
+                          default:
+                          begin 
+                             light_M1<=3'b000;
+                             light_M2<=3'b000;
+                             light_MT<=3'b000;
+                             light_S<=3'b000;
+                          end
+                          endcase
+                  end                
+                    
+      
+      endmodule
+
+```
+
+## Schematic view
 
 
